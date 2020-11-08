@@ -1,0 +1,15 @@
+{
+  "name": "Steve's Utilities",
+  "id": "905632536371558180",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html",
+  "menu": [
+    { "name": "Open Steve's Utilities", "command": "showUI" },
+    { "name": "Frame Screenshot", "command": "frameScreenShot" },
+    { "name": "Set to Full Width", "command": "fullWidth" },
+    { "name": "Set to Full Height", "command": "fullHeight" },
+    { "name": "Set to Full Size", "command": "fullSize" },
+    { "name": "Format Illustration", "command": "formatIllo" }
+  ]
+}
