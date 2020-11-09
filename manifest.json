@@ -2,8 +2,8 @@
   "name": "Doist Utilities",
   "id": "905632536371558180",
   "api": "1.0.0",
-  "main": "code.js",
-  "ui": "ui.html",
+  "main": "dist/code.js",
+  "ui": "dist/ui.html",
   "menu": [
     { "name": "Open Doist Utilities", "command": "showUI" },
     { "name": "Frame Screenshot", "command": "frameScreenShot" },
