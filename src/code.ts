@@ -5,7 +5,10 @@ import { hideAnnotations } from "./functions/hideAnnotations";
 
 //setup UI
 if (figma.command === "showUI") {
-  figma.showUI(__html__);
+  figma.showUI(__html__, {
+    width: 300,
+    height: 300,
+  });
   figma.ui.onmessage = (message) => {
     if (message === "fullWidth") {
       setFullSize("horizontal");
