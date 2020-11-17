@@ -1,6 +1,7 @@
 import { setFullSize } from "./functions/setFullSize";
 import { formatIllo } from "./functions/formatIllo";
 import { frameScreenShot } from "./functions/frameScreenshot";
+import { hideAnnotations } from "./functions/hideAnnotations";
 
 //setup UI
 if (figma.command === "showUI") {
@@ -17,6 +18,8 @@ if (figma.command === "showUI") {
       frameScreenShot();
     } else if (message === "formatIllo") {
       formatIllo();
+    } else if (message === "hideAnnotations") {
+      hideAnnotations();
     } else {
       return;
     }
@@ -27,6 +30,11 @@ if (figma.command === "showUI") {
 // set up menu commands
 if (figma.command === "frameScreenShot") {
   frameScreenShot();
+  figma.closePlugin();
+}
+
+if (figma.command === "hideAnnotations") {
+  hideAnnotations();
   figma.closePlugin();
 }
 

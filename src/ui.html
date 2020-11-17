@@ -2120,6 +2120,28 @@
         display: inline-block;
       }
     </style>
+    <style>
+      body {
+        color: var(--black8-opaque);
+      }
+      .section-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .section-container + .section-container {
+        margin-top: 1rem;
+      }
+      .icon-button-wrapper {
+        display: flex;
+      }
+      .icon-button {
+        padding: 0;
+      }
+      .icon--expand {
+        transform: translate(0px, -1px);
+      }
+    </style>
   </head>
   <body style="padding: 1rem">
     <div>
@@ -2166,9 +2188,15 @@
         </button>
       </div>
       <div class="section-container">
-        <p class="type type--bold">Format Illustration</p>
+        <p class="type type--bold">Format illustration</p>
         <button data-click="formatIllo" class="button button--secondary">
           Format
+        </button>
+      </div>
+      <div class="section-container">
+        <p class="type type--bold">Show/hide annotations</p>
+        <button data-click="hideAnnotations" class="button button--secondary">
+          Toggle
         </button>
       </div>
     </div>
