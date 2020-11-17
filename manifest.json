@@ -10,6 +10,7 @@
     { "name": "Set to Full Width", "command": "fullWidth" },
     { "name": "Set to Full Height", "command": "fullHeight" },
     { "name": "Set to Full Size", "command": "fullSize" },
-    { "name": "Format Illustration", "command": "formatIllo" }
+    { "name": "Format Illustration", "command": "formatIllo" },
+    { "name": "Toggle Annotations", "command": "hideAnnotations" }
   ]
 }

@@ -2120,7 +2120,6 @@
         display: inline-block;
       }
     </style>
-
     <style>
       body {
         color: var(--black8-opaque);
@@ -2141,6 +2140,11 @@
       }
       .icon--expand {
         transform: translate(0px, -1px);
+      }
+
+      iframe {
+        height: 500px !important;
+        width: 500px !important;
       }
     </style>
   </head>
@@ -2189,9 +2193,15 @@
         </button>
       </div>
       <div class="section-container">
-        <p class="type type--bold">Format Illustration</p>
+        <p class="type type--bold">Format illustration</p>
         <button data-click="formatIllo" class="button button--secondary">
           Format
+        </button>
+      </div>
+      <div class="section-container">
+        <p class="type type--bold">Show/hide annotations</p>
+        <button data-click="hideAnnotations" class="button button--secondary">
+          Toggle
         </button>
       </div>
     </div>
