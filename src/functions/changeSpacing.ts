@@ -1,6 +1,5 @@
 let selection = figma.currentPage.selection;
-// const componentKey = "8c32c8ca5ef4ba59cac6370fdda69fa90758a003";
-const componentKey = "76e4f999c6adf721b494ca2cd2c9d6e92c65fe54";
+const componentKey = "8c32c8ca5ef4ba59cac6370fdda69fa90758a003";
 const spaces = [
   "4",
   "8",
