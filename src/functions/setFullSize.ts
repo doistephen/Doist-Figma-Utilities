@@ -14,7 +14,7 @@ const setFullSize = function (dimension) {
       shape.type === "TEXT"
     ) {
       const parent = shape.parent;
-      if (parent && parent.type === "FRAME") {
+      if ((parent && parent.type === "FRAME") || parent.type === "COMPONENT") {
         const parentWidth = parent.width;
         const parentHeight = parent.height;
         const shapeHeight = shape.height;

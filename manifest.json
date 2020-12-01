@@ -11,6 +11,8 @@
     { "name": "Set to Full Height", "command": "fullHeight" },
     { "name": "Set to Full Size", "command": "fullSize" },
     { "name": "Format Illustration", "command": "formatIllo" },
-    { "name": "Toggle Annotations", "command": "hideAnnotations" }
+    { "name": "Toggle Annotations", "command": "hideAnnotations" },
+    { "name": "Increase Spacing", "command": "increaseSpacing" },
+    { "name": "Decrease Spacing", "command": "decreaseSpacing" }
   ]
 }

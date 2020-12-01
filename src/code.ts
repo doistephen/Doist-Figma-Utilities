@@ -2,6 +2,7 @@ import { setFullSize } from "./functions/setFullSize";
 import { formatIllo } from "./functions/formatIllo";
 import { frameScreenShot } from "./functions/frameScreenshot";
 import { hideAnnotations } from "./functions/hideAnnotations";
+import { increaseSpacing, decreaseSpacing } from "./functions/changeSpacing";
 
 //setup UI
 if (figma.command === "showUI") {
@@ -28,7 +29,6 @@ if (figma.command === "showUI") {
     }
   };
 }
-//set up functions
 
 // set up menu commands
 if (figma.command === "frameScreenShot") {
@@ -51,7 +51,22 @@ if (figma.command === "fullHeight") {
   figma.closePlugin();
 }
 
+if (figma.command === "fullSize") {
+  setFullSize("vertical");
+  setFullSize("horizontal");
+  figma.closePlugin();
+}
+
 if (figma.command === "formatIllo") {
   formatIllo();
+  figma.closePlugin();
+}
+
+if (figma.command === "increaseSpacing") {
+  increaseSpacing();
+  figma.closePlugin();
+}
+if (figma.command === "decreaseSpacing") {
+  decreaseSpacing();
   figma.closePlugin();
 }
