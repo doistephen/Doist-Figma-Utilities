@@ -33,7 +33,7 @@ if (figma.command === "showUI") {
 // set up menu commands
 if (figma.command === "frameScreenShot") {
   frameScreenShot();
-  figma.closePlugin();
+  //   figma.closePlugin();
 }
 
 if (figma.command === "hideAnnotations") {
