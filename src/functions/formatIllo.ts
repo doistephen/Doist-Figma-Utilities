@@ -1,7 +1,19 @@
 import { addChildToFrame } from "./addChildToFrame";
 import { clone } from "./clone";
 
-const formatIllo = function () {
+const keys = [
+  "78156f8a72740bd0d9ac694b9f76ccc0062d3781", //black
+];
+
+const formatIllo = async function () {
+  async function mapStyles() {
+    const promises = keys.map(async (style) => {
+      return await figma.importStyleByKeyAsync(style);
+    });
+    return await Promise.all(promises);
+  }
+
+  const styles = await mapStyles();
   let selection = figma.currentPage.selection;
 
   for (let shape of selection) {
@@ -32,13 +44,10 @@ const formatIllo = function () {
         duplicate.name = "Tint";
 
         //Change tint color to black
-        duplicate.fillStyleId =
-          "S:78156f8a72740bd0d9ac694b9f76ccc0062d3781,762:8";
+        duplicate.fillStyleId = styles[0].id;
 
         //Create Mask with two layers
         shape.isMask = true;
-        //Lock the illustration layer
-        shape.locked = true;
 
         //clear selection
         figma.currentPage.selection = [];
