@@ -64,9 +64,9 @@ if (figma.command === "formatIllo") {
 
 if (figma.command === "increaseSpacing") {
   increaseSpacing();
-  figma.closePlugin();
+  //   figma.closePlugin();
 }
 if (figma.command === "decreaseSpacing") {
   decreaseSpacing();
-  figma.closePlugin();
+  //   figma.closePlugin();
 }

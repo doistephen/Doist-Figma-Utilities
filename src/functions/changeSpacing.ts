@@ -17,6 +17,7 @@ const spaces = [
 ];
 
 const changeSpacing = function (direction) {
+  let newSize;
   if (selection.length === 1) {
     for (let shape of selection) {
       if (
@@ -32,7 +33,6 @@ const changeSpacing = function (direction) {
         let currSize = textLabel.characters;
 
         let currIndex = spaces.indexOf(currSize);
-        let newSize;
 
         if (direction === "increase" && currIndex < spaces.length - 1) {
           newSize = spaces[currIndex + 1];
@@ -46,6 +46,10 @@ const changeSpacing = function (direction) {
         shape.paddingRight = newSize / 2;
         shape.paddingBottom = newSize / 2;
         shape.paddingLeft = newSize / 2;
+        shape.primaryAxisSizingMode = "AUTO";
+        shape.counterAxisSizingMode = "AUTO";
+        shape.primaryAxisAlignItems = "CENTER";
+        shape.counterAxisAlignItems = "CENTER";
         figma
           .loadFontAsync({ family: "Roboto Mono", style: "Regular" })
           .then(() => {
@@ -63,6 +67,7 @@ const changeSpacing = function (direction) {
   } else {
     figma.closePlugin("Select one instance of the spacing component.");
   }
+  figma.closePlugin(newSize + "px");
 };
 
 const increaseSpacing = function () {
