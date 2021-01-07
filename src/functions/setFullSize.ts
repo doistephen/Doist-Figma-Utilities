@@ -19,15 +19,26 @@ const setFullSize = function (dimension) {
         const parentHeight = parent.height;
         const shapeHeight = shape.height;
         const shapeWidth = shape.width;
+        const aspectRatio = shapeWidth / shapeHeight;
 
         //set rotation to 0
         shape.rotation = 0;
 
         //resize the shape
         if (dimension === "horizontal") {
-          shape.resize(parentWidth, shapeHeight);
+          //maintains the aspect ratio when the constrain proportions setting is applied
+          if (shape.constrainProportions) {
+            shape.resize(parentWidth, parentWidth / aspectRatio);
+          } else {
+            shape.resize(parentWidth, shapeHeight);
+          }
         } else if (dimension === "vertical") {
-          shape.resize(shapeWidth, parentHeight);
+          //maintains the aspect ratio when the constrain proportions setting is applied
+          if (shape.constrainProportions) {
+            shape.resize(parentHeight * aspectRatio, parentHeight);
+          } else {
+            shape.resize(shapeWidth, parentHeight);
+          }
         }
 
         //set the shape position to origin
