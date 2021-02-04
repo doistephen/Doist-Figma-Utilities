@@ -17,57 +17,50 @@ const spaces = [
 ];
 
 const changeSpacing = function (direction) {
-  let newSize;
-  if (selection.length === 1) {
-    for (let shape of selection) {
-      if (
-        shape.type === "INSTANCE" &&
-        shape.mainComponent.key === componentKey
-      ) {
-        let textLabel;
-        const textWrapper = shape.children[0];
-        if (textWrapper.type === "FRAME") {
-          textLabel = textWrapper.children[0];
-        }
-        console.log(textLabel.characters);
-        let currSize = textLabel.characters;
-
-        let currIndex = spaces.indexOf(currSize);
-
-        if (direction === "increase" && currIndex < spaces.length - 1) {
-          newSize = spaces[currIndex + 1];
-        } else if (direction === "decrease" && currIndex > 0) {
-          newSize = spaces[currIndex - 1];
-        } else {
-          newSize = currSize;
-        }
-
-        shape.paddingTop = newSize / 2;
-        shape.paddingRight = newSize / 2;
-        shape.paddingBottom = newSize / 2;
-        shape.paddingLeft = newSize / 2;
-        shape.primaryAxisSizingMode = "AUTO";
-        shape.counterAxisSizingMode = "AUTO";
-        shape.primaryAxisAlignItems = "CENTER";
-        shape.counterAxisAlignItems = "CENTER";
-        figma
-          .loadFontAsync({ family: "Roboto Mono", style: "Regular" })
-          .then(() => {
-            textLabel.setRangeFontName(0, textLabel.characters.length, {
-              family: "Roboto Mono",
-              style: "Regular",
-            });
-            textLabel.characters = newSize;
-          })
-          .catch((err) => {
-            console.error(err);
-          });
+  for (let shape of selection) {
+    let newSize;
+    if (shape.type === "INSTANCE" && shape.mainComponent.key === componentKey) {
+      let textLabel;
+      const textWrapper = shape.children[0];
+      if (textWrapper.type === "FRAME") {
+        textLabel = textWrapper.children[0];
       }
+      console.log(textLabel.characters);
+      let currSize = textLabel.characters;
+
+      let currIndex = spaces.indexOf(currSize);
+
+      if (direction === "increase" && currIndex < spaces.length - 1) {
+        newSize = spaces[currIndex + 1];
+      } else if (direction === "decrease" && currIndex > 0) {
+        newSize = spaces[currIndex - 1];
+      } else {
+        newSize = currSize;
+      }
+
+      shape.paddingTop = newSize / 2;
+      shape.paddingRight = newSize / 2;
+      shape.paddingBottom = newSize / 2;
+      shape.paddingLeft = newSize / 2;
+      shape.primaryAxisSizingMode = "AUTO";
+      shape.counterAxisSizingMode = "AUTO";
+      shape.primaryAxisAlignItems = "CENTER";
+      shape.counterAxisAlignItems = "CENTER";
+      figma
+        .loadFontAsync({ family: "Roboto Mono", style: "Regular" })
+        .then(() => {
+          textLabel.setRangeFontName(0, textLabel.characters.length, {
+            family: "Roboto Mono",
+            style: "Regular",
+          });
+          textLabel.characters = newSize;
+        })
+        .catch((err) => {
+          console.error(err);
+        });
     }
-  } else {
-    figma.closePlugin("Select one instance of the spacing component.");
   }
-  figma.closePlugin(newSize + "px");
+  figma.closePlugin();
 };
 
 const increaseSpacing = function () {

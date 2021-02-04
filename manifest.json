@@ -13,6 +13,8 @@
     { "name": "Format Illustration", "command": "formatIllo" },
     { "name": "Toggle Annotations", "command": "hideAnnotations" },
     { "name": "Increase Spacing", "command": "increaseSpacing" },
-    { "name": "Decrease Spacing", "command": "decreaseSpacing" }
+    { "name": "Decrease Spacing", "command": "decreaseSpacing" },
+    { "name": "Stretch Items", "command": "itemsStretch" },
+    { "name": "Justify Between", "command": "justifyBetween" }
   ]
 }

@@ -2,13 +2,14 @@ import { setFullSize } from "./functions/setFullSize";
 import { formatIllo } from "./functions/formatIllo";
 import { frameScreenShot } from "./functions/frameScreenshot";
 import { hideAnnotations } from "./functions/hideAnnotations";
+import { itemsStretch, justifyBetween } from "./functions/autolayout";
 import { increaseSpacing, decreaseSpacing } from "./functions/changeSpacing";
 
 //setup UI
 if (figma.command === "showUI") {
   figma.showUI(__html__, {
     width: 300,
-    height: 300,
+    height: 225,
   });
   figma.ui.onmessage = (message) => {
     if (message === "fullWidth") {
@@ -64,9 +65,14 @@ if (figma.command === "formatIllo") {
 
 if (figma.command === "increaseSpacing") {
   increaseSpacing();
-  //   figma.closePlugin();
 }
 if (figma.command === "decreaseSpacing") {
   decreaseSpacing();
-  //   figma.closePlugin();
+}
+
+if (figma.command === "itemsStretch") {
+  itemsStretch();
+}
+if (figma.command === "justifyBetween") {
+  justifyBetween();
 }
