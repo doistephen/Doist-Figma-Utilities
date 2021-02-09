@@ -2,14 +2,19 @@ import { setFullSize } from "./functions/setFullSize";
 import { formatIllo } from "./functions/formatIllo";
 import { frameScreenShot } from "./functions/frameScreenshot";
 import { hideAnnotations } from "./functions/hideAnnotations";
-import { itemsStretch, justifyBetween } from "./functions/autolayout";
+import { createSlices } from "./functions/createSlices";
+import {
+  itemsStretch,
+  justifyBetween,
+  itemsCenter,
+} from "./functions/autolayout";
 import { increaseSpacing, decreaseSpacing } from "./functions/changeSpacing";
 
 //setup UI
 if (figma.command === "showUI") {
   figma.showUI(__html__, {
     width: 300,
-    height: 225,
+    height: 300,
   });
   figma.ui.onmessage = (message) => {
     if (message === "fullWidth") {
@@ -25,6 +30,12 @@ if (figma.command === "showUI") {
       formatIllo();
     } else if (message === "hideAnnotations") {
       hideAnnotations();
+    } else if (message === "iosSlices") {
+      createSlices("ios");
+    } else if (message === "androidSlices") {
+      createSlices("android");
+    } else if (message === "webSlices") {
+      createSlices("web");
     } else {
       return;
     }
@@ -72,6 +83,9 @@ if (figma.command === "decreaseSpacing") {
 
 if (figma.command === "itemsStretch") {
   itemsStretch();
+}
+if (figma.command === "itemsCenter") {
+  itemsCenter();
 }
 if (figma.command === "justifyBetween") {
   justifyBetween();
