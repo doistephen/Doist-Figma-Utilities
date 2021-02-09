@@ -32,21 +32,25 @@ const addSliceToFrame = function (frame, platform) {
 };
 
 function formatName(input1, input2, output) {
-  const { Size = "", ...rest } = Object.fromEntries(
+  const props = Object.fromEntries(
     input2
       .trim()
       .split(",")
       .map((str) => str.trim().split("="))
   );
+
+  const size = props.Size;
+  delete props.Size;
+
   const sanitisedName = input1
     .toLowerCase()
     .replace(/[\s/]/g, "_")
     .replace(/__+/, "_");
   const sizeUnit = output === "android" ? "dp" : output === "ios" ? "pt" : "px";
-  const props = Object.values(rest)
+  const rest = Object.values(props)
     .map((s) => s.toLowerCase())
     .filter(Boolean);
-  const values = [sanitisedName, ...props, `${Size}${sizeUnit}`].join("_");
+  const values = [sanitisedName, ...rest, `${size}${sizeUnit}`].join("_");
 
   return output === "ios" ? pascalCase(values) : values;
 }
