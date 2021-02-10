@@ -7,9 +7,9 @@
   "menu": [
     { "name": "Open Doist Utilities", "command": "showUI" },
     { "name": "Frame Screenshot", "command": "frameScreenShot" },
-    { "name": "Set to Full Width", "command": "fullWidth" },
-    { "name": "Set to Full Height", "command": "fullHeight" },
-    { "name": "Set to Full Size", "command": "fullSize" },
+    { "name": "Fill container width", "command": "fullWidth" },
+    { "name": "Fill container height", "command": "fullHeight" },
+    { "name": "Fill container", "command": "fullSize" },
     { "name": "Format Illustration", "command": "formatIllo" },
     { "name": "Toggle Annotations", "command": "hideAnnotations" },
     { "name": "Increase Spacing", "command": "increaseSpacing" },
