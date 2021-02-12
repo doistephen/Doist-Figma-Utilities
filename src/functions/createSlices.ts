@@ -36,13 +36,13 @@ function formatName(input1, input2, output) {
     input2
       .trim()
       .split(",")
-      .map((str) => str.trim().split("="))
+      .map((str) => str.trim().replace(/[\s/]/g, "_").split("="))
   );
 
   const size = props.Size;
   delete props.Size;
 
-  const sanitisedName = input1
+  const sanitisedInput1 = input1
     .toLowerCase()
     .replace(/[\s/]/g, "_")
     .replace(/__+/, "_");
@@ -50,7 +50,7 @@ function formatName(input1, input2, output) {
   const rest = Object.values(props)
     .map((s) => s.toLowerCase())
     .filter(Boolean);
-  const values = [sanitisedName, ...rest, `${size}${sizeUnit}`].join("_");
+  const values = [sanitisedInput1, ...rest, `${size}${sizeUnit}`].join("_");
 
   return output === "ios" ? pascalCase(values) : values;
 }
