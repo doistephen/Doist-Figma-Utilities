@@ -3,11 +3,7 @@ import { formatIllo } from "./functions/formatIllo";
 import { frameScreenShot } from "./functions/frameScreenshot";
 import { hideAnnotations } from "./functions/hideAnnotations";
 import { createSlices } from "./functions/createSlices";
-import {
-  itemsStretch,
-  justifyBetween,
-  itemsCenter,
-} from "./functions/autolayout";
+import { itemsStretch } from "./functions/autolayout";
 import { increaseSpacing, decreaseSpacing } from "./functions/changeSpacing";
 
 //setup UI
@@ -83,10 +79,4 @@ if (figma.command === "decreaseSpacing") {
 
 if (figma.command === "itemsStretch") {
   itemsStretch();
-}
-if (figma.command === "itemsCenter") {
-  itemsCenter();
-}
-if (figma.command === "justifyBetween") {
-  justifyBetween();
 }
