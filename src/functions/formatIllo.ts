@@ -19,6 +19,13 @@ const formatIllo = async function () {
   for (let shape of selection) {
     if (shape.type === "RECTANGLE") {
       if (shape.fills[0].type === "IMAGE") {
+        // if (shape.rotation !== 0) {
+        //   figma.closePlugin(
+        //     "Shapes must not be rotated for this function to work. Sorry!"
+        //   );
+        //   return false;
+        // }
+
         if (shape.fills[0].scaleMode != "CROP") {
           const fills = clone(shape.fills);
           fills[0].scaleMode = "CROP";

@@ -5,12 +5,13 @@ import { hideAnnotations } from "./functions/hideAnnotations";
 import { createSlices } from "./functions/createSlices";
 import { itemsStretch } from "./functions/autolayout";
 import { increaseSpacing, decreaseSpacing } from "./functions/changeSpacing";
+import { prependLang, deleteLocalizedPages } from "./functions/prependLang";
 
 //setup UI
 if (figma.command === "showUI") {
   figma.showUI(__html__, {
     width: 300,
-    height: 300,
+    height: 310,
   });
   figma.ui.onmessage = (message) => {
     if (message === "fullWidth") {
@@ -32,6 +33,10 @@ if (figma.command === "showUI") {
       createSlices("android");
     } else if (message === "webSlices") {
       createSlices("web");
+    } else if (message === "langJpg") {
+      prependLang("jpg");
+    } else if (message === "langPng") {
+      prependLang("png");
     } else {
       return;
     }
@@ -79,4 +84,8 @@ if (figma.command === "decreaseSpacing") {
 
 if (figma.command === "itemsStretch") {
   itemsStretch();
+}
+
+if (figma.command === "deleteLocalizedPages") {
+  deleteLocalizedPages();
 }
