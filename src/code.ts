@@ -4,7 +4,11 @@ import { frameScreenShot } from "./functions/frameScreenshot";
 import { hideAnnotations } from "./functions/hideAnnotations";
 import { createSlices } from "./functions/createSlices";
 import { itemsStretch } from "./functions/autolayout";
-import { increaseSpacing, decreaseSpacing } from "./functions/changeSpacing";
+import {
+  increaseSpacing,
+  decreaseSpacing,
+  insertSpacing,
+} from "./functions/changeSpacing";
 import { prependLang, deleteLocalizedPages } from "./functions/prependLang";
 
 //setup UI
@@ -75,6 +79,9 @@ if (figma.command === "formatIllo") {
   figma.closePlugin();
 }
 
+if (figma.command === "insertSpacing") {
+  insertSpacing();
+}
 if (figma.command === "increaseSpacing") {
   increaseSpacing();
 }

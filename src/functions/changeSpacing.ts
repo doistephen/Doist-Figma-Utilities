@@ -16,6 +16,41 @@ const spaces = [
   "240",
 ];
 
+function isPartOfInstance(node) {
+  const parent = node.parent;
+
+  if (parent.type === "INSTANCE") {
+    return true;
+  } else if (parent.type === "PAGE") {
+    return false;
+  } else {
+    return isPartOfInstance(parent);
+  }
+}
+
+const insertSpacing = function () {
+  if (selection && selection.length === 1) {
+    const selected = selection[0];
+    const parent = selected.parent;
+
+    if (isPartOfInstance(selected)) {
+      figma.closePlugin("You can't add elements to a component instance.");
+      return false;
+    }
+    const getIndex = function (node) {
+      return node.parent.children.map((child) => child.id).indexOf(node.id);
+    };
+
+    figma.importComponentByKeyAsync(componentKey).then((response) => {
+      const spacing = response.createInstance();
+      parent.insertChild(getIndex(selected) + 1, spacing);
+      spacing.opacity = 0;
+      figma.currentPage.selection = [spacing];
+    });
+    figma.closePlugin();
+  }
+};
+
 const changeSpacing = function (direction) {
   for (let shape of selection) {
     let newSize;
@@ -71,4 +106,4 @@ const decreaseSpacing = function () {
   changeSpacing("decrease");
 };
 
-export { increaseSpacing, decreaseSpacing };
+export { increaseSpacing, decreaseSpacing, insertSpacing };
