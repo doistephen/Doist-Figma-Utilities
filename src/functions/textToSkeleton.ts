@@ -13,6 +13,7 @@ function textToSkeleton() {
     } else {
       const width = node.width;
       const height = node.height;
+      const constraints = node.constraints;
       const position = node.relativeTransform;
       let fontSize = 12;
       let visualSize;
@@ -27,6 +28,7 @@ function textToSkeleton() {
       const parent = node.parent;
       parent.appendChild(frame);
       frame.relativeTransform = position;
+      frame.constraints = constraints;
 
       node.remove();
       newSelection = [...newSelection, frame];
