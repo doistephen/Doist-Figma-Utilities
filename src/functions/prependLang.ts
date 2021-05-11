@@ -1,4 +1,5 @@
 const langCodes = [
+  "ar",
   "cs",
   "da",
   "de",
@@ -68,4 +69,36 @@ const deleteLocalizedPages = function () {
   figma.closePlugin();
 };
 
-export { prependLang, deleteLocalizedPages };
+const moveLocalizedFramesToPage = () => {
+  prependLang("png");
+  const pages = figma.root.children;
+
+  let nodes = [];
+  pages.forEach((page) => {
+    langCodes.forEach((code) => {
+      if (page.name.startsWith(`[${code}]`) && pages.indexOf(page) !== 0) {
+        page.children.forEach((child) => {
+          nodes = [...nodes, child];
+        });
+      }
+    });
+  });
+  const newPage = figma.createPage();
+  newPage.name = "Localized Graphics";
+
+  const autoLayoutFrame = figma.createFrame();
+  autoLayoutFrame.layoutMode = "HORIZONTAL";
+  autoLayoutFrame.counterAxisSizingMode = "AUTO";
+  autoLayoutFrame.itemSpacing = 64;
+  autoLayoutFrame.fills = [];
+
+  newPage.appendChild(autoLayoutFrame);
+  nodes.map((node) => {
+    autoLayoutFrame.appendChild(node);
+  });
+
+  deleteLocalizedPages();
+  figma.closePlugin();
+};
+
+export { prependLang, deleteLocalizedPages, moveLocalizedFramesToPage };

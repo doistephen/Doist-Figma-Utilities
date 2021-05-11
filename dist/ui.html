@@ -2142,10 +2142,12 @@
       .icon--expand {
         transform: translate(0px, -1px);
       }
-
-      iframe {
-        height: 500px !important;
-        width: 500px !important;
+      .divider {
+        width: 100%;
+        height: 1px;
+        background-color: var(--silver);
+        margin-top: 1rem;
+        margin-bottom: 1rem;
       }
     </style>
   </head>
@@ -2222,6 +2224,29 @@
             class="button button--secondary ml-xxsmall"
           >
             Web
+          </button>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="section-container">
+        <p class="type type--bold">Put localized graphics on one page</p>
+        <div class="flex ml-xxsmall">
+          <button
+            data-click="moveLocalizedFramesToPage"
+            class="button button--secondary"
+          >
+            Move
+          </button>
+        </div>
+      </div>
+      <div class="section-container">
+        <p class="type type--bold">Delete localized pages</p>
+        <div class="flex ml-xxsmall">
+          <button
+            data-click="deleteLocalizedPages"
+            class="button button--secondary ml-xxsmall"
+          >
+            Delete
           </button>
         </div>
       </div>

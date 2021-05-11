@@ -3,13 +3,18 @@ import { formatIllo } from "./functions/formatIllo";
 import { frameScreenShot } from "./functions/frameScreenshot";
 import { hideAnnotations } from "./functions/hideAnnotations";
 import { createSlices } from "./functions/createSlices";
-import { itemsStretch } from "./functions/autolayout";
+import { autoLayout } from "./functions/autolayout";
+import { textToSkeleton } from "./functions/textToSkeleton";
 import {
   increaseSpacing,
   decreaseSpacing,
   insertSpacing,
 } from "./functions/changeSpacing";
-import { prependLang, deleteLocalizedPages } from "./functions/prependLang";
+import {
+  prependLang,
+  deleteLocalizedPages,
+  moveLocalizedFramesToPage,
+} from "./functions/prependLang";
 
 //setup UI
 if (figma.command === "showUI") {
@@ -37,10 +42,16 @@ if (figma.command === "showUI") {
       createSlices("android");
     } else if (message === "webSlices") {
       createSlices("web");
+    } else if (message === "moveLocalizedFramesToPage") {
+      moveLocalizedFramesToPage();
+    } else if (message === "deleteLocalizedPages") {
+      deleteLocalizedPages();
     } else if (message === "langJpg") {
       prependLang("jpg");
     } else if (message === "langPng") {
       prependLang("png");
+    } else if (message === "textToSkeleton") {
+      textToSkeleton();
     } else {
       return;
     }
@@ -89,10 +100,17 @@ if (figma.command === "decreaseSpacing") {
   decreaseSpacing();
 }
 
-if (figma.command === "itemsStretch") {
-  itemsStretch();
+if (figma.command === "autoLayout") {
+  autoLayout();
 }
 
+if (figma.command === "moveLocalizedFramesToPage") {
+  moveLocalizedFramesToPage();
+}
 if (figma.command === "deleteLocalizedPages") {
   deleteLocalizedPages();
+}
+
+if (figma.command === "textToSkeleton") {
+  textToSkeleton();
 }

@@ -1,3 +1,5 @@
+import isPartOfInstance from "./isPartOfInstance";
+
 let selection = figma.currentPage.selection;
 const componentKey = "8c32c8ca5ef4ba59cac6370fdda69fa90758a003";
 const spaces = [
@@ -15,18 +17,6 @@ const spaces = [
   "192",
   "240",
 ];
-
-function isPartOfInstance(node) {
-  const parent = node.parent;
-
-  if (parent.type === "INSTANCE") {
-    return true;
-  } else if (parent.type === "PAGE") {
-    return false;
-  } else {
-    return isPartOfInstance(parent);
-  }
-}
 
 const insertSpacing = function () {
   if (selection && selection.length === 1) {
@@ -46,8 +36,21 @@ const insertSpacing = function () {
       parent.insertChild(getIndex(selected) + 1, spacing);
       spacing.opacity = 0;
       figma.currentPage.selection = [spacing];
+      figma.closePlugin();
     });
-    figma.closePlugin();
+  } else if (selection.length === 0) {
+    figma.importComponentByKeyAsync(componentKey).then((response) => {
+      const spacing = response.createInstance();
+      figma.currentPage.insertChild(0, spacing);
+      spacing.opacity = 0;
+      figma.currentPage.selection = [spacing];
+      const { x, y } = figma.viewport.center;
+      spacing.x = x;
+      spacing.y = y;
+      figma.closePlugin();
+    });
+  } else {
+    figma.closePlugin("Only select one layer at a time, or no layers.");
   }
 };
 

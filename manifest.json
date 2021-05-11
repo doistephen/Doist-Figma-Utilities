@@ -11,11 +11,16 @@
     { "name": "Fill container height", "command": "fullHeight" },
     { "name": "Fill container", "command": "fullSize" },
     { "name": "Format Illustration", "command": "formatIllo" },
+    { "name": "Text to Skeleton Shape", "command": "textToSkeleton" },
     { "name": "Toggle Annotations", "command": "hideAnnotations" },
     { "name": "Insert Spacing", "command": "insertSpacing" },
     { "name": "Increase Spacing", "command": "increaseSpacing" },
     { "name": "Decrease Spacing", "command": "decreaseSpacing" },
-    { "name": "Stretch Items", "command": "itemsStretch" },
-    { "name": "Delete Localized Pages", "command": "deleteLocalizedPages" }
+    { "name": "Format Auto Layout Children", "command": "autoLayout" },
+    { "name": "Delete Localized Pages", "command": "deleteLocalizedPages" },
+    {
+      "name": "Move Localized Frames to Page",
+      "command": "moveLocalizedFramesToPage"
+    }
   ]
 }
