@@ -73,30 +73,58 @@ const moveLocalizedFramesToPage = () => {
   prependLang("png");
   const pages = figma.root.children;
 
-  let nodes = [];
+  //put all nodes into an array of pages, each an array itself containing the graphics from that page
+  let allNodes = [];
   pages.forEach((page) => {
     langCodes.forEach((code) => {
       if (page.name.startsWith(`[${code}]`) && pages.indexOf(page) !== 0) {
+        let frames = [];
         page.children.forEach((child) => {
-          nodes = [...nodes, child];
+          frames = [...frames, child];
         });
+        allNodes = [...allNodes, frames];
       }
     });
   });
+
+  //reconfigure the arrays to be organized by graphic, rather than by page.
+  const sliced = allNodes.reduce((results, collection) => {
+    collection.forEach((g, i) => {
+      results[i] = results[i] || [];
+      results[i].push(g);
+    });
+    return results;
+  }, []);
+
   const newPage = figma.createPage();
   newPage.name = "Localized Graphics";
 
-  const autoLayoutFrame = figma.createFrame();
-  autoLayoutFrame.layoutMode = "HORIZONTAL";
-  autoLayoutFrame.counterAxisSizingMode = "AUTO";
-  autoLayoutFrame.itemSpacing = 64;
-  autoLayoutFrame.fills = [];
+  const mainLayoutFrame = figma.createFrame();
+  mainLayoutFrame.layoutMode = "VERTICAL";
+  mainLayoutFrame.counterAxisSizingMode = "AUTO";
+  mainLayoutFrame.itemSpacing = 96;
+  mainLayoutFrame.fills = [];
+  mainLayoutFrame.name = "Graphics";
 
-  newPage.appendChild(autoLayoutFrame);
-  nodes.map((node) => {
-    autoLayoutFrame.appendChild(node);
+  sliced.forEach((arr) => {
+    const autoLayoutFrame = figma.createFrame();
+    autoLayoutFrame.layoutMode = "HORIZONTAL";
+    autoLayoutFrame.counterAxisSizingMode = "AUTO";
+    autoLayoutFrame.itemSpacing = 64;
+    autoLayoutFrame.fills = [];
+    const childName = arr[0].name;
+    autoLayoutFrame.name = childName.substr(childName.indexOf("/") + 1).trim();
+
+    newPage.appendChild(autoLayoutFrame);
+    arr.map((node) => {
+      autoLayoutFrame.appendChild(node);
+    });
+
+    mainLayoutFrame.appendChild(autoLayoutFrame);
   });
+  newPage.appendChild(mainLayoutFrame);
 
+  figma.currentPage = newPage;
   deleteLocalizedPages();
   figma.closePlugin();
 };
