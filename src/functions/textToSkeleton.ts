@@ -16,6 +16,14 @@ function textToSkeleton() {
       const constraints = node.constraints;
       const position = node.relativeTransform;
       const color = node.fills;
+      const id = node.id;
+      const siblings = node.parent.children;
+      let siblingIds = [];
+      siblings.map((node) => {
+        siblingIds.push(node.id);
+      });
+      const index = siblingIds.indexOf(id);
+
       let fontSize = 12;
       let visualSize;
       if (node.fontSize !== figma.mixed) {
@@ -27,7 +35,7 @@ function textToSkeleton() {
       const frame = createSkeletonShape(width, height, visualSize, color);
 
       const parent = node.parent;
-      parent.appendChild(frame);
+      parent.insertChild(index, frame);
       frame.relativeTransform = position;
       frame.constraints = constraints;
 
