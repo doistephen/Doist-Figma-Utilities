@@ -15,6 +15,7 @@ function textToSkeleton() {
       const height = node.height;
       const constraints = node.constraints;
       const position = node.relativeTransform;
+      const color = node.fills;
       let fontSize = 12;
       let visualSize;
       if (node.fontSize !== figma.mixed) {
@@ -23,7 +24,7 @@ function textToSkeleton() {
         figma.closePlugin("Only select text nodes with one font size applied.");
       }
 
-      const frame = createSkeletonShape(width, height, visualSize);
+      const frame = createSkeletonShape(width, height, visualSize, color);
 
       const parent = node.parent;
       parent.appendChild(frame);
@@ -38,7 +39,7 @@ function textToSkeleton() {
   });
 }
 
-function createSkeletonShape(width, height, visualSize) {
+function createSkeletonShape(width, height, visualSize, color) {
   const frame = figma.createFrame();
   frame.name = "Skeleton Text";
   frame.fills = [];
@@ -46,8 +47,9 @@ function createSkeletonShape(width, height, visualSize) {
   const rectangle = figma.createRectangle();
   frame.appendChild(rectangle);
   let fills = clone(rectangle.fills);
-  fills = [{ type: "SOLID", color: { r: 0, g: 0, b: 0 }, opacity: 0.1 }];
-  rectangle.fills = fills;
+  //   fills = [{ type: "SOLID", color: { r: 0, g: 0, b: 0 }, opacity: 0.1 }];
+  rectangle.fills = color;
+  rectangle.opacity = 0.1;
   rectangle.cornerRadius = 2;
   rectangle.name = "Shape";
   const rectangleHeight = Math.ceil(visualSize * 0.85);
